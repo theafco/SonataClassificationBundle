@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\ClassificationBundle\Entity\ContextManager;
 use Sonata\ClassificationBundle\Model\ContextInterface;
 use Sonata\ClassificationBundle\Model\ContextManagerInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 abstract class ContextAwareAdmin extends AbstractAdmin
 {
@@ -35,6 +36,11 @@ abstract class ContextAwareAdmin extends AbstractAdmin
         parent::__construct($code, $class, $baseControllerName);
 
         $this->contextManager = $contextManager;
+
+        if (Kernel::VERSION_ID > 20800) {
+            // NEXT_MAJOR remove this block
+            unset($this->formOptions['cascade_validation']);
+        }
     }
 
     /**
