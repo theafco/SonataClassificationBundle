@@ -11,7 +11,7 @@
 
 namespace Sonata\ClassificationBundle\Form\Type;
 
-use Sonata\ClassificationBundle\Form\ChoiceList\CategoryChoiceLoader;
+use Sonata\ClassificationBundle\Form\ChoiceList\CategorySelectorChoiceLoader;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Sonata\ClassificationBundle\Model\CategoryManagerInterface;
 use Sonata\CoreBundle\Model\ManagerInterface;
@@ -62,7 +62,7 @@ class CategorySelectorType extends AbstractType
             'context' => null,
             'category' => null,
             'choice_loader' => function (Options $opts) {
-                return new CategoryChoiceLoader($this->manager, $opts['context'], $opts['category']);
+                return new CategorySelectorChoiceLoader($this->manager, $opts['context'], $opts['category']);
             },
         ));
     }
